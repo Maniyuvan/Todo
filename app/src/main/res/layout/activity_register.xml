@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to TODO!!!"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        android:layout_gravity="center" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:hint="User Name"
+            android:id="@+id/userNameRegister"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:hint="Email ID"
+            android:inputType="textEmailAddress"
+            android:id="@+id/emailRegister"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:inputType="number"
+            android:hint="Phone Number"
+            android:id="@+id/phoneRegister"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:id="@+id/passwordRegister"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:text="Register"
+        android:layout_gravity="center"
+        android:id="@+id/registerBtn"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/existingUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Are you a new user? Register with us"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        android:layout_below="@id/loginBtn"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textColor="@color/colorPrimary"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Todo</string>
+    <string name="add">Add</string>
+    <string name="task_name">Task Name</string>
+    <string name="task_date">Task Date</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_task">Add Task</string>
+    <string name="done">DONE</string>
+    <string name="delete">delete</string>
+    <string name="priority">Priority</string>
+    <string name="password">Password</string>
+    <string name="username_or_email">Username or Email</string>
+</resources>

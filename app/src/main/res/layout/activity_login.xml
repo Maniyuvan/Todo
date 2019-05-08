@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_90sdp"
+        android:text="Welcome to Todo!!!"
+        android:layout_marginLeft="@dimen/_45sdp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_24sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginLeft="@dimen/_120sdp"
+        android:id="@+id/loginText"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textSize="@dimen/_24sdp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_below="@id/welcomeText"
+        android:textColor="@color/colorPrimary"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_35sdp"
+        android:id="@+id/emailTinput"
+        android:layout_below="@id/loginText"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:hint="@string/username_or_email"
+            android:inputType="textEmailAddress"
+            android:id="@+id/emailLogin"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_35sdp"
+        android:id="@+id/passwordTinput"
+        android:layout_below="@id/emailTinput"
+        android:layout_marginTop="@dimen/_16sdp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/passwordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:hint="@string/password"
+            android:layout_below="@id/emailLogin"
+            android:inputType="textPassword" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:text="Login"
+        android:layout_gravity="center"
+        android:id="@+id/loginBtn"
+        android:layout_marginLeft="@dimen/_110sdp"
+        android:layout_below="@id/passwordTinput"
+        android:layout_marginTop="@dimen/_26sdp"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/newUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_35sdp"
+        android:text="Are you a new user? Register with us"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        android:layout_below="@id/loginBtn"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textColor="@color/colorPrimary"/>
+
+
+
+</RelativeLayout>
