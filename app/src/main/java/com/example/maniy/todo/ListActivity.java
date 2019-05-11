@@ -1,5 +1,6 @@
 package com.example.maniy.todo;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SharedElementCallback;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -57,11 +59,8 @@ public class ListActivity extends AppCompatActivity {
     private Snackbar snackbar;
     private  ProgressDialog progressDialog;
     private CoordinatorLayout coordinatorLayout;
-    private String SHARED_PREF_NAME = "userDetails";
-//    private static final String read_url = "https://todo-mani.000webhostapp.com/todo/read.php?user_pk=1";
-//    private static final String insert_url = "https://todo-mani.000webhostapp.com/todo/insert.php";
-    private static final String read_url = "http://todo-mani.000webhostapp.com/todo/read.php?user_pk=";
-    private static final String insert_url = "http://todo-mani.000webhostapp.com/todo/insert.php";
+    private String SHARED_PREF_NAME = "Manikandan";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +100,7 @@ public class ListActivity extends AppCompatActivity {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
+
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -111,7 +111,7 @@ public class ListActivity extends AppCompatActivity {
                 add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.hide();
+                        dialog.dismiss();
                         Toast.makeText(context, "Clicked add button", Toast.LENGTH_SHORT).show();
                         insertTaskData();
                     }
@@ -141,15 +141,12 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void logout() {
-           SharedPreferences shared_pref = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-            SharedPreferences.Editor sp =  shared_pref.edit();
-            sp.remove("IS_LOGGEDIN");
-            sp.putBoolean("IS_LOGGEDIN",false);
-            sp.apply();
-            Intent i = new Intent(ListActivity.this,LoginActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-            sp.clear();
+        finish();
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
 
     private void insertTaskData() {
@@ -160,20 +157,21 @@ public class ListActivity extends AppCompatActivity {
         if(checkBox.isChecked()){
              imp = "1";
         }
-        final String priority = imp;
         SharedPreferences sp = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        final String userPK = sp.getString("USER_PK",null);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, insert_url, new Response.Listener<String>() {
+        final String userPK = sp.getString("USER_PK", null);
+        final String priority = imp;
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url.INSERT_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
-                    progressDialog.hide();
+                    progressDialog.dismiss();
                     JSONObject object = new JSONObject(response);
-                    snackbar = Snackbar.make(coordinatorLayout,"Something went wrong",snackbar.LENGTH_SHORT);
+                    snackbar = Snackbar.make(coordinatorLayout, object.getString("msg"), snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction("OK", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             snackbar.dismiss();
+                            loadTasklist();
                         }
                     });
                     snackbar.show();
@@ -195,10 +193,10 @@ public class ListActivity extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
+                params.put("user_pk", userPK);
                 params.put("list_name",taskName);
                 params.put("list_date",taskDate);
                 params.put("ls_priority",priority);
-                params.put("user_pk",userPK);
                 return params;
             }
         };
@@ -208,9 +206,8 @@ public class ListActivity extends AppCompatActivity {
     private void loadTasklist() {
         progressDialog.show();
         SharedPreferences sp = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-        final String PK = sp.getString("USER_PK",null);
-        Log.e("USERPK",PK);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, read_url+PK, new Response.Listener<String>() {
+        final String userPK = sp.getString("USER_PK", null);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url.READ_URL + userPK, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -249,7 +246,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String>  params = new HashMap<>();
-                params.put("user_pk",PK);
+                params.put("user_pk", userPK);
                 return params;
             }
         };

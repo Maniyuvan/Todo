@@ -46,8 +46,7 @@
         android:layout_marginTop="@dimen/_12sdp"
         android:ems="10"
         android:focusable="true"
-        android:hint="@string/task_date"
-        android:inputType="date"/>
+        android:hint="@string/task_date" />
 
     <CheckBox
         android:id="@+id/priority"
